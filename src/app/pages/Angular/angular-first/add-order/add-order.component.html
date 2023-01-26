@@ -1,0 +1,123 @@
+<div class="container">
+  <h1 class="mat-h1">Create New Order</h1>
+  <form [formGroup]="addForm" (submit)="addNewOrder(addForm)">
+    <mat-form-field appearance="legacy" color="primary" class="block">
+      <mat-label>Customer Name</mat-label>
+      <input matInput type="text" formControlName="customerName" />
+    </mat-form-field>
+    <ng-container *ngIf="customerNameField.touched">
+      <mat-error *ngIf="customerNameField.hasError('required')">
+        customer name is required
+      </mat-error>
+    </ng-container>
+    <mat-form-field appearance="legacy" color="primary" class="block">
+      <mat-label>Email</mat-label>
+      <textarea matInput formControlName="email"></textarea>
+    </mat-form-field>
+    <ng-container *ngIf="emailField.touched">
+      <mat-error *ngIf="emailField.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="emailField.hasError('email')">
+        Bad Format Email
+      </mat-error>
+    </ng-container>
+    <div formArrayName="items">
+      <div
+        *ngFor="let allItem of addForm.get('items')['controls']; let j = index"
+      >
+        <div [formGroupName]="j">
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field appearance="legacy" color="primary" class="block">
+                <mat-label>Select Category</mat-label>
+                <mat-select
+                  formControlName="category"
+                  (selectionChange)="onChange(j)"
+                  required
+                >
+                  <mat-option
+                    *ngFor="let itemCat of data.category"
+                    [value]="itemCat"
+                  >
+                    {{ itemCat }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance="legacy" color="primary" class="block">
+                <mat-label>Select Item</mat-label>
+                <mat-select
+                  formControlName="name"
+                  [disabled]="
+                    !FormControlitems.get(j.toString()).get('category').value
+                  "
+                  (selectionChange)="onChangeItem(j.toString(), $event)"
+                  required
+                >
+                  <mat-option
+                    *ngFor="let itemProduct of selectedCategory[j]"
+                    [value]="itemProduct?.name"
+                  >
+                    {{ itemProduct.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance="legacy" color="primary" class="block">
+                <mat-label>Price</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  formControlName="price"
+                  [readonly]="true"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <button
+                style="margin-right: 6px"
+                type="button"
+                mat-mini-fab
+                color="primary"
+                *ngIf="
+                  addForm.get('items')['controls'][
+                    addForm.get('items')['controls'].length - 1
+                  ] == allItem
+                "
+                (click)="onAddOrderForm()"
+              >
+                <mat-icon>add_circle_outline</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="warn"
+                type="button"
+                *ngIf="addForm.get('items')['controls'].length > 1"
+                (click)="onDeleteOrderForm(j)"
+              >
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center">
+      <button
+        mat-raised-button
+        type="button"
+        color="warn"
+        style="margin-right: 6px"
+        (click)="onClose()"
+      >
+        Cancel
+      </button>
+      <button mat-raised-button [disabled]="addForm.invalid" color="primary">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

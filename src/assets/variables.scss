@@ -1,0 +1,165 @@
+// header properties
+$header-height-offset: 300px;
+$header-height: 64px;
+$brand-width: 200px;
+
+// sidebar properties
+$sidebar-width: 96px;
+
+// parent properties
+$parent-width: 800px;
+
+// Media Query Ranges
+$small-screen-up: 576px !default;
+$medium-screen-up: 993px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 575.98px !default;
+$medium-screen: 992px !default;
+$large-screen: 1200px !default;
+
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+
+// black
+$black1: rgba(
+  $color: black,
+  $alpha: 0.8,
+);
+$black2: rgba(
+  $color: black,
+  $alpha: 0.6,
+);
+$black3: rgba(
+  $color: black,
+  $alpha: 0.5,
+);
+$black4: rgba(
+  $color: black,
+  $alpha: 0.3,
+);
+
+// white
+$white1: rgba(
+  $color: white,
+  $alpha: 0.8,
+);
+$white2: rgba(
+  $color: white,
+  $alpha: 0.6,
+);
+$white3: rgba(
+  $color: white,
+  $alpha: 0.4,
+);
+
+// $primary2: (
+//   50: #e6f9ff,
+//   100: #b3eeff,
+//   200: #80e3fe,
+//   300: #4dd8fe,
+//   400: #1bcdfe,
+//   500: #01b4e4,
+//   600: #018cb2,
+//   700: #01647f,
+//   800: #003c4c,
+//   contrast: (
+//     50: $black1,
+//     100: $black1,
+//     200: $black1,
+//     300: $black1,
+//     400: $black1,
+//     500: white,
+//     600: white,
+//     700: white,
+//     800: white,
+//   ),
+// );
+
+$primary: (
+  50: #e8f3fc,
+  100: #badcf7,
+  200: #5eaeed,
+  300: #3096e8,
+  400: #177dcf,
+  500: #1261a1,
+  600: #0d4573,
+  700: #082a45,
+  800: #030e17,
+  contrast: (
+    50: $black1,
+    100: $black1,
+    200: $black1,
+    300: $black1,
+    400: $black1,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+  ),
+);
+
+// $accent2: (
+//   50: #faebfa,
+//   100: #f0c2ef,
+//   200: #e699e4,
+//   300: #dc70d9,
+//   400: #d147cf,
+//   500: #b82eb5,
+//   600: #8f238d,
+//   700: #661965,
+//   800: #3d0f3c,
+//   contrast: (
+//     50: $black1,
+//     100: $black1,
+//     200: $black1,
+//     300: $black1,
+//     400: $black1,
+//     500: white,
+//     600: white,
+//     700: white,
+//     800: white,
+//   ),
+// );
+
+$accent: (
+  50: #f9ecf5,
+  100: #ecc6e1,
+  200: #dfa0ce,
+  300: #d279ba,
+  400: #c553a6,
+  500: #ac3a8c,
+  600: #862d6d,
+  700: #5f204e,
+  800: #39132f,
+  contrast: (
+    50: $black1,
+    100: $black1,
+    200: $black1,
+    300: $black1,
+    400: $black1,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+  ),
+);
+
+$primary-gradient: linear-gradient(
+  45deg,
+  map-get($primary, 600),
+  map-get($primary, 400)
+);
+
+$accent-gradient: linear-gradient(
+  45deg,
+  map-get($accent, 600),
+  map-get($accent, 300)
+);
+
+$error-gradient: linear-gradient(45deg, #c62828, #ef5350);
+$red: #c62828;
+$gray: #e4e4e4;

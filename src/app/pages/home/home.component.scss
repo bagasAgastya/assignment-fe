@@ -1,0 +1,18 @@
+@import "../../../assets/variables.scss";
+
+.welcome-card {
+  background: $primary-gradient !important;
+  color: white;
+  margin-bottom: 24px;
+  min-height: 200px;
+}
+.title {
+  font-size: 2rem;
+  padding-top: 40px;
+  text-align: center;
+  min-height: 200px;
+  color: #fcedd8;
+  background: $primary-gradient !important;
+  font-family: "Niconne", cursive;
+  font-weight: 700;
+}

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="mat-h1">Tech Shop</h1>
+    </div>
+    <div class="col-6" style="text-align: end">
+      <button mat-raised-button color="primary" (click)="addNewOrder()">
+        <mat-icon style="margin-right: 6px">add_shopping_cart</mat-icon>
+        <span>New Order</span>
+      </button>
+    </div>
+  </div>
+  <div class="content">
+    <div *ngIf="orders.length <= 0" style="text-align: center">
+      <mat-card>
+        <h1 class="mat-h1">No Orders Found</h1>
+        <h3>Didnt see the order?, maybe you should create new one</h3>
+      </mat-card>
+    </div>
+    <mat-card *ngFor="let order of orders" style="margin-bottom: 5px">
+      <div class="row">
+        <div class="col-6">
+          <mat-card-title>Total Price: {{ order.totalPrice }}$</mat-card-title>
+          <mat-card-subtitle
+            >By {{ order.customerName }} - {{ order.email }}</mat-card-subtitle
+          >
+        </div>
+        <div class="col-6" style="text-align: end">
+          <button
+            mat-mini-fab
+            (click)="deleteOrder(order)"
+            color="warn"
+            style="margin-right: 6px"
+            matTooltip="Delete"
+          >
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            color="accent"
+            matTooltip="Edit"
+            (click)="editOrder(order)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+      <hr />
+      <mat-card-content>
+        <div class="row list-item" *ngFor="let item of order.items">
+          <div class="col-2">
+            <mat-icon>loyalty</mat-icon>
+          </div>
+          <div class="col-10">
+            <span>{{ item.category }}</span> <br />
+            <span>{{ item.name }} - {{ item.price }}$</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<navbar></navbar>
+<div class="parent-container">
+  <mat-drawer-container class="drawer-container" [hasBackdrop]="false">
+    <mat-drawer #sidenav [mode]="opened ? 'side' : 'push'" [opened]="opened">
+      <sidebar [menu]="menu"></sidebar>
+    </mat-drawer>
+    <mat-drawer-content #mainContainer>
+      <div class="main-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

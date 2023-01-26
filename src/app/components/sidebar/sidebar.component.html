@@ -1,0 +1,20 @@
+<div class="sidenav-container">
+  <ul class="sidenav-menu">
+    <li [ngClass]="menu == 'home' && 'active'">
+      <a routerLink="/home">
+        <i class="fa fa-home"></i>
+        <span>Home</span>
+      </a>
+    </li>
+
+    <li [ngClass]="menu == 'a-first' && 'active'">
+      <a [matMenuTriggerFor]="angularChallange"
+        ><i class="fa fa-tasks"></i>
+        <span>Angular</span>
+      </a>
+      <mat-menu #angularChallange="matMenu">
+        <a mat-menu-item routerLink="/a-first">First Challange</a>
+      </mat-menu>
+    </li>
+  </ul>
+</div>
