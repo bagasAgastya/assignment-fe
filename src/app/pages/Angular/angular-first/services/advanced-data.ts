@@ -1,3 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 export interface Order {
   totalPrice: number;
   customerName: string;
@@ -11,44 +15,31 @@ export interface Item {
   price: number;
 }
 
+@Injectable({
+  providedIn: 'root',
+})
 export class OrdersComponent {
-  // use this data as mock data for the app
-  orders: Order[] = [
-    {
-      totalPrice: 246,
-      customerName: 'PewDiePie',
-      email: 'PewDiePie@gmail.com',
-      items: [
-        {
-          category: 'CPU',
-          name: 'AMD Ryzen 5 2600',
-          price: 117,
-        },
-        {
-          category: 'Motherboard',
-          name: 'MSI PRO Z390-A',
-          price: 129,
-        },
-      ],
-    },
-    {
-      totalPrice: 306,
-      customerName: 'Filthy Frank',
-      email: 'georgemiller@gmail.com',
-      items: [
-        {
-          category: 'Video Card',
-          name: 'ZOTAC GeForce GTX 1060',
-          price: 209,
-        },
-        {
-          category: 'Memory',
-          name: 'CORSAIR Vengeance RGB Pro 16GB',
-          price: 97,
-        },
-      ],
-    },
-  ];
+  constructor(private httpClient: HttpClient) {}
+
+  getDataMemoryList() {
+    return this.httpClient.get(`${environment.endPoint}/memoryList`);
+  }
+
+  getDataOrders() {
+    return this.httpClient.get(`${environment.endPoint}/order`);
+  }
+
+  addDataOrders(data) {
+    return this.httpClient.post(`${environment.endPoint}/order`, data);
+  }
+
+  updateDataOrders(id, data) {
+    return this.httpClient.put(`${environment.endPoint}/order/${id}`, data);
+  }
+
+  removeDataOrders(id) {
+    return this.httpClient.delete(`${environment.endPoint}/order/${id}`);
+  }
 
   categories = ['CPU', 'Motherboard', 'Video Card', 'Memory'];
 
@@ -70,15 +61,23 @@ export class OrdersComponent {
     { category: 'Video Card', name: 'GIGABYTE GeForce RTX 2070', price: 499 },
   ];
 
-  memoryList: Item[] = [
-    { category: 'Memory', name: 'CORSAIR Vengeance RGB Pro 16GB', price: 97 },
-    { category: 'Memory', name: 'G.SKILL TridentZ RGB Series 16GB', price: 86 },
-    { category: 'Memory', name: 'G.SKILL Ripjaws Series 8GB', price: 42 },
-  ];
-
-  getOrders() {
-    return this.orders;
-  }
+  // [
+  //   {
+  //    "category": "Memory",
+  //    "name": "CORSAIR Vengeance RGB Pro 16GB",
+  //    "price": 97
+  //   },
+  //   {
+  //    "category": "Memory",
+  //    "name": "G.SKILL TridentZ RGB Series 16GB",
+  //    "price": 86
+  //   },
+  //   {
+  //    "category": "Memory",
+  //    "name": "G.SKILL Ripjaws Series 8GB",
+  //    "price": 42
+  //   }
+  //  ]
 
   getCategories() {
     return this.categories;
@@ -94,9 +93,5 @@ export class OrdersComponent {
 
   getVideoCardList() {
     return this.videoCardList;
-  }
-
-  getMemoryList() {
-    return this.memoryList;
   }
 }

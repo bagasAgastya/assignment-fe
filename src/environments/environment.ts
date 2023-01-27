@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endPoint: 'https://63d2341b1780fd6ab9bf53d0.mockapi.io/assignment/',
+  endPoint: 'https://63d2341b1780fd6ab9bf53d0.mockapi.io/assignment',
 };
 
 /*

@@ -8,55 +8,82 @@
         <mat-icon style="margin-right: 6px">add_shopping_cart</mat-icon>
         <span>New Order</span>
       </button>
+      <button
+        style="margin-left: 6px"
+        mat-raised-button
+        color="accent"
+        (click)="getData()"
+      >
+        <mat-icon style="margin-right: 6px">add_shopping_cart</mat-icon>
+        <span>Reset</span>
+      </button>
     </div>
   </div>
   <div class="content">
-    <div *ngIf="orders.length <= 0" style="text-align: center">
-      <mat-card>
-        <h1 class="mat-h1">No Orders Found</h1>
-        <h3>Didnt see the order?, maybe you should create new one</h3>
+    <ng-container *ngIf="showSpinner">
+      <mat-card class="spin-center">
+        <mat-spinner></mat-spinner>
       </mat-card>
-    </div>
-    <mat-card *ngFor="let order of orders" style="margin-bottom: 5px">
-      <div class="row">
-        <div class="col-6">
-          <mat-card-title>Total Price: {{ order.totalPrice }}$</mat-card-title>
-          <mat-card-subtitle
-            >By {{ order.customerName }} - {{ order.email }}</mat-card-subtitle
-          >
-        </div>
-        <div class="col-6" style="text-align: end">
-          <button
-            mat-mini-fab
-            (click)="deleteOrder(order)"
-            color="warn"
-            style="margin-right: 6px"
-            matTooltip="Delete"
-          >
-            <mat-icon>remove_circle_outline</mat-icon>
-          </button>
-          <button
-            mat-mini-fab
-            color="accent"
-            matTooltip="Edit"
-            (click)="editOrder(order)"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
-        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!showSpinner">
+      <div *ngIf="orders?.length <= 0" style="text-align: center">
+        <mat-card>
+          <h1 class="mat-h1">No Orders Found</h1>
+          <h3>
+            Didnt see the order ? Create new one from
+            <span
+              style="text-decoration: underline; color: blue; cursor: pointer"
+              (click)="addNewOrder()"
+              >here</span
+            >
+          </h3>
+        </mat-card>
       </div>
-      <hr />
-      <mat-card-content>
-        <div class="row list-item" *ngFor="let item of order.items">
-          <div class="col-2">
-            <mat-icon>loyalty</mat-icon>
+      <mat-card *ngFor="let order of orders" style="margin-bottom: 5px">
+        <div class="row">
+          <div class="col-6">
+            <mat-card-title
+              >Total Price: {{ order.totalPrice }}$</mat-card-title
+            >
+            <mat-card-subtitle
+              >By {{ order.customerName }} -
+              {{ order.email }}</mat-card-subtitle
+            >
           </div>
-          <div class="col-10">
-            <span>{{ item.category }}</span> <br />
-            <span>{{ item.name }} - {{ item.price }}$</span>
+          <div class="col-6" style="text-align: end">
+            <button
+              mat-mini-fab
+              (click)="deleteOrder(order)"
+              color="warn"
+              style="margin-right: 6px"
+              matTooltip="Delete"
+            >
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+            <button
+              mat-mini-fab
+              color="accent"
+              matTooltip="Edit"
+              (click)="editOrder(order)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
           </div>
         </div>
-      </mat-card-content>
-    </mat-card>
+        <hr />
+        <mat-card-content>
+          <div class="row list-item" *ngFor="let item of order?.items">
+            <div class="col-2">
+              <mat-icon>loyalty</mat-icon>
+            </div>
+            <div class="col-10">
+              <span>{{ item.category }}</span> <br />
+              <span>{{ item.name }} - {{ item.price }}$</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
   </div>
 </div>

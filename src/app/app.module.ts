@@ -25,6 +25,11 @@ import { AddOrderComponent } from './pages/Angular/angular-first/add-order/add-o
 import { AngularFirstComponent } from './pages/Angular/angular-first/angular-first.component';
 import { EditOrderComponent } from './pages/Angular/angular-first/edit-order/edit-order.component';
 import { OrdersComponent } from './pages/Angular/angular-first/services/advanced-data';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PieChartComponent } from './pages/Angular/pie-chart/pie-chart.component';
+import { BarChartComponent } from './pages/Angular/bar-chart/bar-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,8 @@ import { OrdersComponent } from './pages/Angular/angular-first/services/advanced
     AngularFirstComponent,
     AddOrderComponent,
     EditOrderComponent,
+    PieChartComponent,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +61,9 @@ import { OrdersComponent } from './pages/Angular/angular-first/services/advanced
     MatTooltipModule,
     ReactiveFormsModule,
     MatSelectModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    ChartsModule,
   ],
   entryComponents: [AddOrderComponent, EditOrderComponent],
   providers: [OrdersComponent],
